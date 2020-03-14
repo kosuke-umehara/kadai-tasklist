@@ -1,0 +1,10 @@
+<h1>id: <%= @tasklist.id %> のタスク編集ページ</h1>
+
+<% formm_with(model:@tasklist,local:true)do |f| %>
+  <%= f.label:content,'タスク' %>
+  <%= f.text_field :content %>
+  
+  <%= f.submit '編集完了' %>
+<% end %>
+
+<%= link_to '一覧に戻る', tasklists_path %>
