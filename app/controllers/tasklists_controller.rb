@@ -8,18 +8,19 @@ class TasklistsController < ApplicationController
   end
 
   def new
-       @tasklist = Tasklist.new
+    @tasklist = Tasklist.new
   end
 
   def create
     @tasklist = Tasklist.new(tasklist_params)
     
     if @tasklist.save
-      flash[:danger] = 'タスクが正常に追加されました'
+      flash[:success] = 'タスクが正常に追加されました'
       redirect_to @tasklist
     else
       flash.now[:danger] = 'タスクが追加されませんでした'
       render :new
+    end
   end
 
   def edit
@@ -30,7 +31,7 @@ class TasklistsController < ApplicationController
     @tasklist = Tasklist.find(params[:id])
     
     if @tasklist.update(tasklist_params)
-      flash[tasklist]= 'タスクは正常に更新されました'
+      flash[:success]= 'タスクは正常に更新されました'
       redirect_to @tasklist
     else
       flash.now[:dangeer]= 'タスクは正常に更新されませんでした'
@@ -42,13 +43,13 @@ class TasklistsController < ApplicationController
     @tasklist = Tasklist.find(params[:id])
     @tasklist.destroy
     
-    flash[:success] = 'タスクは正常に更新されました'
+    flash[:success] = 'タスクは正常に削除されました'
     redirect_to tasklists_url
   end
-end
 
 private
 
-def tasklist_params
+  def tasklist_params
   params.require(:tasklist).permit(:content)
-  
+  end
+end
