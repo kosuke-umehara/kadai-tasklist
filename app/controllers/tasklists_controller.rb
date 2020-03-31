@@ -51,6 +51,6 @@ private
   end
 
   def tasklist_params
-    params.require(:tasklist).permit(:content)
+    params.require(:tasklist).permit(:content, :title)
   end
 end

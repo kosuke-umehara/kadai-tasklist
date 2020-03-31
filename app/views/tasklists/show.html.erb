@@ -2,6 +2,9 @@
 
 <p><%= @tasklist.content %></p>
 
+<p>タイトル: <%= @message.title %></p>
+<p>メッセージ: <%= @message.content %></p>
+
 <%=link_to'一覧に戻る', tasklists_path %>
 <%= link_to'このタスクを編集する',edit_tasklist_path(@tasklist)%>
 <%= link_to 'このタスクを削除する',@tasklist, method: :delete, data: {confirm: '本当に削除してもよろしいでしょうか？'}%>
