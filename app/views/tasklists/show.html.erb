@@ -1,10 +1,19 @@
 <h1>id: <%= @tasklist.id %>のタスク詳細</h1>
 
-<p><%= @tasklist.content %></p>
+<table class="table table-bordered">
+  <tr>
+    <th>id</th>
+    <td><%= @tasklist.id %></td>
+  </tr>
+  <tr>
+    <th>タイトル</th>
+    <td><%= @tasklist.title %></td>
+  </tr>
+  <tr>
+    <th>メッセージ</th>
+    <td><%= @tasklist.content %></td>
+  </tr>
+</table>
 
-<p>タイトル: <%= @tasklist.title %></p>
-<p>メッセージ: <%= @tasklist.content %></p>
-
-<%=link_to'一覧に戻る', tasklists_path %>
-<%= link_to'このタスクを編集する',edit_tasklist_path(@tasklist)%>
-<%= link_to 'このタスクを削除する',@tasklist, method: :delete, data: {confirm: '本当に削除してもよろしいでしょうか？'}%>
+<%= link_to'このタスクを編集する',edit_tasklist_path(@tasklist), class: 'btn btn-light'%>
+<%= link_to 'このタスクを削除する',@tasklist, method: :delete, data: {confirm: '本当に削除してもよろしいでしょうか？'}, class: 'btn btn-danger'%>
