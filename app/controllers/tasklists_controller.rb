@@ -1,24 +1,28 @@
 class TasklistsController < ApplicationController
+  before_action :require_user_logged_in
   before_action :set_tasklist, only: [:show, :edit, :update, :destroy]
   
   def index
-      @tasklists = Tasklist.order(id: :desc).page(params[:page]).per(3)
+    if logged_in?
+      @tasklists = current_user.tasklists.order(id: :desc).page(params[:page]).per(3)
+    end
   end
 
   def show
   end
 
   def new
-    @tasklist = Tasklist.new
+    @tasklist = current_user.tasklists.build
   end
 
   def create
-    @tasklist = Tasklist.new(tasklist_params)
+    @tasklist = current_user.tasklists.build(tasklist_params)
     
     if @tasklist.save
       flash[:success] = 'タスクが正常に追加されました'
-      redirect_to @tasklist
+      redirect_to root_url
     else
+      @tasklists = current_user.tasklists.order(id: :desc).page(params[:page]).per(3)
       flash.now[:danger] = 'タスクが追加されませんでした'
       render :new
     end
@@ -30,7 +34,7 @@ class TasklistsController < ApplicationController
   def update
     if @tasklist.update(tasklist_params)
       flash[:success]= 'タスクは正常に更新されました'
-      redirect_to @tasklist
+      redirect_to root_url
     else
       flash.now[:dangeer]= 'タスクは正常に更新されませんでした'
       render :edit

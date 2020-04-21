@@ -1,0 +1,34 @@
+<div class="text-center">
+  <h1>神の仲間入りする。</h1>
+</div>
+
+<div class="row">
+  <div class="col-sm-6 offset-sm-3">
+    
+    <%= form_with(model: @user,local:true) do |f| %>
+       <%= render 'layouts/error_messages', model: f.object %>
+      
+      <div class="formgroup">
+        <%= f.label :name, '神名'%>
+        <%= f.text_field :name, class: 'form-control'%>
+      </div>
+      
+      <div class="formgroup">
+        <%= f.label :email, 'Email' %>
+        <%= f.email_field :email, class: 'form-control'%>
+      </div>
+      
+      <div class= "formgroup">
+        <%= f.label :password,'Password'%>
+        <%= f.password_field :password, class:'form-control'%>
+      </div>
+      
+      <div class="formgroup">
+        <%= f.label :password_confirmation, 'Password確認' %>
+        <%= f.password_field :password, class: 'form-control'%>
+      </div>
+      
+      <%= f.submit '神の仲間入り', class: 'btn btn-primary btn-block'%>
+    <% end %>
+  </div>
+</div>
